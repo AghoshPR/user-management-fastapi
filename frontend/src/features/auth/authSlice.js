@@ -58,12 +58,12 @@ const authSlice = createSlice({
         builder
         .addCase(userLogin.fulfilled, (state, action) => {
             state.token = action.payload.access_token;
-            state.role = "user";
+            state.role = action.payload.role;
             state.isAuthenticated = true;
         })
         .addCase(adminLogin.fulfilled, (state, action) => {
             state.token = action.payload.access_token;
-            state.role = "admin";
+            state.role = action.payload.role;
             state.isAuthenticated = true;
         });
     },

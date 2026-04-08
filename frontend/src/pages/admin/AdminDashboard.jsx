@@ -4,9 +4,21 @@ import {
   deleteUserAPI,
   toggleUserAPI,
 } from "../../features/auth/authAPI";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../features/auth/authSlice";
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleLogout = () =>{
+        dispatch(logout())
+        localStorage.removeItem("token")
+        navigate("/user/login")
+
+  }
 
   const fetchUsers = async () => {
     const res = await getUsersAPI();
@@ -29,6 +41,7 @@ export default function AdminDashboard() {
   return (
     <>
       <h1>Admin Dashboard</h1>
+      <button onClick={handleLogout}>Logout</button>
 
       <table border="1">
         <thead>
