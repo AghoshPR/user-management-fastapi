@@ -7,7 +7,7 @@ db = SessionLocal()
 email = input("Enter admin email: ")
 password = input("Enter admin password")
 
-existing_admin = db.query(User).filer(User.role == "admin").first()
+existing_admin = db.query(User).filter(User.role == "admin").first()
 
 if existing_admin:
     print("Admin already Exists")
