@@ -17,7 +17,7 @@ else:
     admin = User(
         username = "admin",
         email=email,
-        password=hash_password(password)
+        password=hash_password(password),
         role="admin",
         is_active = True
     )
