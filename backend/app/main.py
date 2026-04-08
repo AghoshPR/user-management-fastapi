@@ -1,9 +1,10 @@
-
 from fastapi import FastAPI
+from .database import Base,engine
+from .routers import user,admin
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-@app.get("/")
-def greet():
-
-    return "welcome to home"
+app.include_router(user.router)
+app.include_router(admin.router)
